@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import AS Chateau font */
+@font-face {
+  font-family: 'AS Chateau';
+  src: local('AS Chateau');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%; /* Outermost background (e.g. body) - very dark */
+    --foreground: 0 0% 98%;     /* Default text color - light */
+    
+    /* Solid card backgrounds (less emphasis if glassmorphism is primary) */
+    --card: 240 6% 12%;            /* Card background - e.g., hsl(240, 6%, 12%) rgb(29, 29, 32) */
+    --card-foreground: 0 0% 98%; /* Text on cards */
+    
+    /* Page layout background (e.g., main content area holding cards) */
+    --muted: 240 8% 8%;             /* Muted background - e.g., hsl(240, 8%, 8%) rgb(19, 19, 22) - this will be behind glass */
+    --muted-foreground: 240 5% 64.9%; /* Text on muted backgrounds */
+
+    /* Borders for solid elements */
+    --border: 240 5% 17%;           /* Border color - e.g., hsl(240, 5%, 17%) rgb(40, 40, 44) */
+
+    /* Popovers, dialogs, etc. (can be solid or glass depending on design) */
+    --popover: 240 6% 10%;           /* Popover background */
+    --popover-foreground: 0 0% 98%;
+
+    /* Primary interactive elements */
+    --primary: 0 0% 90%;             /* Primary button/accent color - light gray/white-ish */
+    --primary-foreground: 240 10% 3.9%; /* Text on primary elements - dark */
+
+    /* Secondary interactive elements */
+    --secondary: 240 5% 22%;          /* Secondary button background - darker gray */
+    --secondary-foreground: 0 0% 98%;  /* Text on secondary elements */
+
+    /* Accent colors for highlights, focus states, etc. */
+    --accent: 240 5% 22%;            /* Accent background (can be same as secondary or different) */
+    --accent-foreground: 0 0% 98%;   /* Text on accent backgrounds */
+
+    /* Destructive actions */
+    --destructive: 0 70% 50%;          /* Destructive action color (e.g., a brighter red) */
+    --destructive-foreground: 0 0% 98%;
+
+    /* Input fields */
+    --input: 240 5% 17%;             /* Input field background (same as border or slightly different) */
+    --ring: 240 4.9% 83.9%;          /* Focus ring color */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.7); /* Light mode glass */
+  backdrop-filter: blur(12px); /* Slightly more blur */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Softer border for light mode */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for light mode glass */
+}
+
+.dark .glass-morphism {
+  background: rgba(250, 250, 252, 0.35); 
+  backdrop-filter: blur(24px);         
+  position: relative; 
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12); 
+  border-radius: 18px; 
+}
+
+.dark .glass-morphism::before {
+  content: ''; 
+  position: absolute; 
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit; 
+  border: 1px solid rgba(255, 255, 255, 0.2); 
+  pointer-events: none; 
+}
+
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/*
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.dark .glass-card {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+*/
+
+.force-lime-border {
+  border: 10px solid limegreen !important;
+}
