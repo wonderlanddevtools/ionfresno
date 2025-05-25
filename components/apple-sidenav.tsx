@@ -3,39 +3,20 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import {
-  LayoutGrid,
-  CircleDollarSign,
-  CreditCard,
-  LineChart,
-  UserCog,
-  DollarSign,
-  ScrollText,
-  ChevronDown,
-  LayoutDashboard,
+import { 
+  LayoutGrid, 
+  CircleDollarSign, 
+  CreditCard, 
+  LineChart, 
+  UserCog, 
+  DollarSign, 
+  ScrollText, 
+  Grid3X3
 } from 'lucide-react';
 import { WidgetPanel } from './WidgetPanel';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
-interface Company {
-  id: string;
-  name: string;
-}
-
-const companies: Company[] = [
-  { id: "1", name: "Wonderland Studio" },
-  { id: "2", name: "WonderFlex Capital" },
-  { id: "3", name: "Wonder Technologies" },
-];
 
 const navItems = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/dashboard', label: 'Dashboard', icon: LayoutGrid },
   { href: '/dashboard/reservations', label: 'Transactions', icon: CircleDollarSign },
   { href: '/dashboard/bill-pay', label: 'Bill Pay', icon: CreditCard },
   { href: '/dashboard/analytics', label: 'Analytics', icon: LineChart },
@@ -47,7 +28,6 @@ const navItems = [
 export function AppleSidenav() {
   const pathname = usePathname();
   const [showWidgetPanel, setShowWidgetPanel] = useState(false);
-  const [selectedCompany, setSelectedCompany] = useState<string>(companies[0].id);
 
   return (
     <div className="absolute inset-0 flex items-center justify-center">
@@ -73,20 +53,11 @@ export function AppleSidenav() {
         
         {/* Content */}
         <div className="p-6 border-b border-white/10">
-          <div className="relative inline-block text-left">
-            <button
-              className="text-[1.4rem] text-white whitespace-nowrap flex items-center gap-2 hover:opacity-80 transition-opacity"
-              style={{ fontFamily: "'AS Chateau', serif", textShadow: '0 1px 2px rgba(0,0,0,0.1)' }}
-              onClick={() => {
-                const currentIndex = companies.findIndex(c => c.id === selectedCompany);
-                const nextIndex = (currentIndex + 1) % companies.length;
-                setSelectedCompany(companies[nextIndex].id);
-              }}
-            >
-              {companies.find(c => c.id === selectedCompany)?.name}
-              <ChevronDown className="w-5 h-5 opacity-75" />
-            </button>
-          </div>
+          <Link href="/dashboard" className="flex items-center space-x-2">
+            <span className="text-[1.4rem] text-white whitespace-nowrap" style={{ fontFamily: "'AS Chateau', serif", textShadow: '0 1px 2px rgba(0,0,0,0.1)' }}>
+              Wonderland Studio
+            </span>
+          </Link>
         </div>
         
         <nav className="flex-1 px-3 py-4 space-y-1">
