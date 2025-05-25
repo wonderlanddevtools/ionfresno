@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { AppleSidenav } from '@/components/apple-sidenav';
 import { Menu } from 'lucide-react';
+import { WidgetProvider } from '@/components/dashboard/WidgetManager';
 
 export default function DashboardLayout({
   children,
@@ -30,21 +31,22 @@ export default function DashboardLayout({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [toggleSidebar]);
   return (
-    <div className="flex h-screen overflow-hidden">
-      {/* Main content with Chateau Marmont background - placed first so it's behind everything */}
-      <div 
-        className="fixed inset-0"
-        style={{
-          backgroundImage: `url('https://media.cntraveler.com/photos/656e52f715361ff9910e32e8/16:9/w_2560,c_limit/Chateau%20Marmont_CM_eastexterior_JFRothenberg.vlores.jpg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          zIndex: 0
-        }}
-      >
-        {/* Dark overlay for better readability */}
-        <div className="absolute inset-0 bg-black/50"></div>
-      </div>
+    <WidgetProvider>
+      <div className="flex h-screen overflow-hidden">
+        {/* Main content with Chateau Marmont background - placed first so it's behind everything */}
+        <div 
+          className="fixed inset-0"
+          style={{
+            backgroundImage: `url('https://media.cntraveler.com/photos/656e52f715361ff9910e32e8/16:9/w_2560,c_limit/Chateau%20Marmont_CM_eastexterior_JFRothenberg.vlores.jpg')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            zIndex: 0
+          }}
+        >
+          {/* Dark overlay for better readability */}
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
       
       {/* Toggle button for sidebar */}
       <button 
@@ -65,7 +67,7 @@ export default function DashboardLayout({
       </div>
       
       {/* Reserved space for macOS-style top bar */}
-      <div className="h-16 w-full fixed top-0 left-0 z-30"></div>
+      <div className="h-16 w-full fixed top-0 left-0 z-30" />
       
       {/* Main content area with responsive margin and padding for top bar */}
       <main 
@@ -76,6 +78,7 @@ export default function DashboardLayout({
           {children}
         </div>
       </main>
-    </div>
+      </div>
+    </WidgetProvider>
   );
 }

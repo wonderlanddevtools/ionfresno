@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { LayoutDashboard, CalendarClock, Building, BarChart3, UserCircle, Settings } from 'lucide-react';
-import React from 'react';
+import { LayoutDashboard, CalendarClock, Building, BarChart3, UserCircle, Settings, Grid3X3 } from 'lucide-react';
+import { useState } from 'react';
+import { WidgetPanel } from './WidgetPanel';
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -17,6 +18,7 @@ const navItems = [
 
 export function DashboardSidenav() {
   const pathname = usePathname();
+  const [showWidgetPanel, setShowWidgetPanel] = useState(false);
 
   // CSS Modules provide better encapsulation and don't get overridden by global styles
 
@@ -58,7 +60,7 @@ export function DashboardSidenav() {
       {/* Apply direct inline styles for reliable Apple-style glassmorphism */}
       <div style={glassContainerStyle}>
         {/* Border element with direct styling */}
-        <div style={borderElementStyle}></div> 
+        <div style={borderElementStyle} /> 
         <div className="p-6 border-b border-white/10"> 
           <Link href="/dashboard" className="flex items-center space-x-2 group">
             <span className="font-playfair-display text-[1.6rem] font-semibold text-neutral-800 group-hover:text-black transition-all duration-200 ease-in-out group-hover:tracking-tight"> 
@@ -89,7 +91,31 @@ export function DashboardSidenav() {
               </Link>
             );
           })}
+          
+          {/* Widgets Button */}
+          <button
+            type="button"
+            onClick={() => setShowWidgetPanel(!showWidgetPanel)}
+            className={cn(
+              'flex items-center space-x-3 px-4 py-2.5 rounded-xl transition-all duration-200 ease-out group w-full', 
+              showWidgetPanel
+                ? 'bg-black/5 text-black font-medium'
+                : 'text-[#464646] hover:text-black hover:bg-black/[0.02]',
+              'text-[13px] tracking-tight'
+            )}
+          >
+            <Grid3X3 className={cn(
+              'transition-colors h-[18px] w-[18px]',
+              showWidgetPanel ? 'text-black' : 'text-[#646464] group-hover:text-black'
+            )} />
+            <span>Widgets</span>
+          </button>
         </nav>
+        
+        {/* Widget Panel */}
+        {showWidgetPanel && (
+          <WidgetPanel onClose={() => setShowWidgetPanel(false)} />
+        )}
         <div className="p-5 mt-auto border-t border-white/10 hover:bg-white/20 transition-colors duration-200 cursor-pointer">
           <div className="flex items-center space-x-3">
             <div className="w-9 h-9 rounded-full bg-neutral-300 flex items-center justify-center text-neutral-700 font-medium text-sm border border-neutral-400">

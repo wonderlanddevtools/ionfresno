@@ -2,14 +2,17 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 import { 
   LayoutDashboard, 
   CalendarClock,
   Building, 
   BarChart3, 
   UserCircle, 
-  Settings 
+  Settings,
+  Grid3X3
 } from 'lucide-react';
+import { WidgetPanel } from './WidgetPanel';
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -22,6 +25,7 @@ const navItems = [
 
 export function AppleSidenav() {
   const pathname = usePathname();
+  const [showWidgetPanel, setShowWidgetPanel] = useState(false);
 
   return (
     <div className="absolute inset-0 flex items-center justify-center">
@@ -80,7 +84,32 @@ export function AppleSidenav() {
               </Link>
             );
           })}
+          
+          {/* Widgets Button */}
+          <button
+            type="button"
+            onClick={() => setShowWidgetPanel(!showWidgetPanel)}
+            className={`
+              flex items-center space-x-3 px-4 py-2.5 rounded-xl transition-all duration-200
+              ${showWidgetPanel 
+                ? 'bg-white/15 text-white font-medium' 
+                : 'text-white/80 hover:text-white hover:bg-white/10'}
+              text-[13px] tracking-tight w-full
+            `}
+          >
+            <Grid3X3 
+              className={`h-[18px] w-[18px] ${
+                showWidgetPanel ? 'text-white' : 'text-white/75'
+              }`}
+            />
+            <span style={{ textShadow: '0 1px 1px rgba(0,0,0,0.1)' }}>Widgets</span>
+          </button>
         </nav>
+        
+        {/* Widget Panel */}
+        {showWidgetPanel && (
+          <WidgetPanel onClose={() => setShowWidgetPanel(false)} />
+        )}
         
         <div className="p-5 mt-auto border-t border-white/10">
           <div className="flex items-center space-x-3">

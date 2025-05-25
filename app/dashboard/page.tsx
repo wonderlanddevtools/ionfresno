@@ -1,11 +1,12 @@
 "use client";
 
-import React from 'react';
-import { cn } from '@/lib/utils';
-import { Briefcase, CalendarDays, DollarSign, Users, BarChart3, MessageSquare, PlusCircle, MoreVertical, User } from 'lucide-react';
+"use client";
+
 import { DoNotDisturbToggle } from '../../components/dashboard/DoNotDisturbToggle';
 import { DraggableWidget } from '../../components/dashboard/DraggableWidget';
-import { WidgetProvider, useWidgets, Widget } from '../../components/dashboard/WidgetManager';
+import { useWidgets, type Widget } from '../../components/dashboard/WidgetManager';
+import { Clock } from '../../components/ui/clock';
+import { UsageStats } from '../../components/ui/usage-stats';
 
 // Widget renderer component
 function WidgetRenderer({ widget }: { widget: Widget }) {
@@ -16,6 +17,10 @@ function WidgetRenderer({ widget }: { widget: Widget }) {
     switch (widget.type) {
       case 'DoNotDisturbToggle':
         return <DoNotDisturbToggle />;
+      case 'Clock':
+        return <Clock />;
+      case 'UsageStats':
+        return <UsageStats />;
       default:
         return <div>Unknown widget type</div>;
     }
@@ -50,9 +55,7 @@ function DashboardContent() {
 export default function DashboardPage() {
   return (
     <div className="p-6 md:p-8 lg:p-10 h-full"> 
-      <WidgetProvider>
-        <DashboardContent />
-      </WidgetProvider>
+      <DashboardContent />
     </div>
   );
 }

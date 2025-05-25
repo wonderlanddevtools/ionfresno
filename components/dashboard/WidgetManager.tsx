@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, createContext, useContext, useEffect } from 'react';
+import { useState, createContext, useContext, useEffect } from 'react';
 
 // Widget definition
 export interface Widget {
@@ -27,31 +27,46 @@ const defaultWidgets: Widget[] = [
     type: 'DoNotDisturbToggle',
     position: { x: 20, y: 80 },
     visible: true
+  },
+  {
+    id: 'clock-widget',
+    type: 'Clock',
+    position: { x: 300, y: 80 },
+    visible: true
+  },
+  {
+    id: 'stats-widget',
+    type: 'UsageStats',
+    position: { x: 20, y: 200 },
+    visible: true
   }
 ];
 
 export function WidgetProvider({ children }: { children: React.ReactNode }) {
-  // Try to load widgets from localStorage, or use default
-  const [widgets, setWidgets] = useState<Widget[]>(() => {
-    if (typeof window !== 'undefined') {
-      const savedWidgets = localStorage.getItem('dashboard-widgets');
-      if (savedWidgets) {
-        try {
-          return JSON.parse(savedWidgets);
-        } catch (e) {
-          console.error('Error parsing saved widgets:', e);
-        }
+  // Initialize with default widgets to prevent hydration mismatch
+  const [widgets, setWidgets] = useState<Widget[]>(defaultWidgets);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Load widgets from localStorage after component mounts (client-side only)
+  useEffect(() => {
+    const savedWidgets = localStorage.getItem('dashboard-widgets');
+    if (savedWidgets) {
+      try {
+        const parsedWidgets = JSON.parse(savedWidgets);
+        setWidgets(parsedWidgets);
+      } catch (e) {
+        console.error('Error parsing saved widgets:', e);
       }
     }
-    return defaultWidgets;
-  });
+    setIsLoaded(true);
+  }, []);
 
-  // Save widgets to localStorage when they change
+  // Save widgets to localStorage when they change (but only after initial load)
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (isLoaded) {
       localStorage.setItem('dashboard-widgets', JSON.stringify(widgets));
     }
-  }, [widgets]);
+  }, [widgets, isLoaded]);
 
   // Add a new widget
   const addWidget = (type: string, initialPosition: { x: number, y: number } = { x: 20, y: 20 }) => {
@@ -90,7 +105,7 @@ export function WidgetProvider({ children }: { children: React.ReactNode }) {
         updateWidgetPosition 
       }}
     >
-      {children}
+      {isLoaded ? children : <div className="relative w-full h-full min-h-[600px]" />}
     </WidgetContext.Provider>
   );
 }
