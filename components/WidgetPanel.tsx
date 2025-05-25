@@ -6,7 +6,7 @@ import { X, Plus } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface WidgetPanelProps {
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 export function WidgetPanel({ onClose }: WidgetPanelProps) {
@@ -15,6 +15,7 @@ export function WidgetPanel({ onClose }: WidgetPanelProps) {
   const availableWidgets = [
     { type: 'DoNotDisturbToggle', name: 'Do Not Disturb', description: 'Toggle focus mode' },
     { type: 'Clock', name: 'Clock', description: 'Current time display' },
+    { type: 'ModernClock', name: 'Modern Clock', description: 'Analog clock with modern styling' },
     { type: 'UsageStats', name: 'Usage Stats', description: 'Your app usage statistics' }
   ];
 

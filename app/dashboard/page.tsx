@@ -7,6 +7,7 @@ import { DraggableWidget } from '../../components/dashboard/DraggableWidget';
 import { useWidgets, type Widget } from '../../components/dashboard/WidgetManager';
 import { Clock } from '../../components/ui/clock';
 import { UsageStats } from '../../components/ui/usage-stats';
+import { ModernClock } from '../../components/ui/modern-clock';
 
 // Widget renderer component
 function WidgetRenderer({ widget }: { widget: Widget }) {
@@ -19,6 +20,18 @@ function WidgetRenderer({ widget }: { widget: Widget }) {
         return <DoNotDisturbToggle />;
       case 'Clock':
         return <Clock />;
+      case 'ModernClock':
+        return (
+          <div className="w-48 h-48 p-2">
+            <ModernClock 
+              size={160} 
+              background="rgba(255, 255, 255, 0.05)" 
+              handColor="#ffffff" 
+              tickColor="#cccccc" 
+              showTicks={true} 
+            />
+          </div>
+        );
       case 'UsageStats':
         return <UsageStats />;
       default:

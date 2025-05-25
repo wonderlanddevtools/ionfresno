@@ -35,6 +35,12 @@ const defaultWidgets: Widget[] = [
     visible: true
   },
   {
+    id: 'modern-clock-widget',
+    type: 'ModernClock',
+    position: { x: 500, y: 80 },
+    visible: true
+  },
+  {
     id: 'stats-widget',
     type: 'UsageStats',
     position: { x: 20, y: 200 },
