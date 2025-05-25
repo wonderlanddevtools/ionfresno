@@ -47,11 +47,11 @@ export function HeroSection() {
             }}
           >
             <motion.h1 
-              className="text-[4rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] font-serif font-bold tracking-tighter mb-8 leading-[0.85] text-white" // Changed back to font-serif, font-bold
+              className="text-[4rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] font-serif font-bold tracking-tighter mb-8 leading-[0.85] text-white"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             >
-              WonderReserve
+              WonderPay
             </motion.h1>
           </motion.div>
           
