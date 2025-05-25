@@ -14,6 +14,13 @@ import {
   Grid3X3
 } from 'lucide-react';
 import { WidgetPanel } from './WidgetPanel';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutGrid },
@@ -25,9 +32,16 @@ const navItems = [
   { href: '/dashboard/accounting', label: 'Accounting', icon: ScrollText },
 ];
 
+const companies = [
+  { id: 1, name: "Wonderland Studio" },
+  { href: '/dashboard/settings', label: 'WonderFlex Capital', icon: DollarSign },
+  { href: '/dashboard/accounting', label: 'Accounting', icon: ScrollText },
+];
+
 export function AppleSidenav() {
   const pathname = usePathname();
   const [showWidgetPanel, setShowWidgetPanel] = useState(false);
+  const [selectedCompany, setSelectedCompany] = useState("1");
 
   return (
     <div className="absolute inset-0 flex items-center justify-center">
@@ -53,11 +67,25 @@ export function AppleSidenav() {
         
         {/* Content */}
         <div className="p-6 border-b border-white/10">
-          <Link href="/dashboard" className="flex items-center space-x-2">
-            <span className="text-[1.4rem] text-white whitespace-nowrap" style={{ fontFamily: "'AS Chateau', serif", textShadow: '0 1px 2px rgba(0,0,0,0.1)' }}>
-              Wonderland Studio
-            </span>
-          </Link>
+          <Select value={selectedCompany} onValueChange={setSelectedCompany}>
+            <SelectTrigger 
+              className="w-[240px] bg-transparent border-0 text-[1.4rem] text-white hover:bg-white/5 transition-colors"
+              style={{ fontFamily: "'AS Chateau', serif", textShadow: '0 1px 2px rgba(0,0,0,0.1)' }}
+            >
+              <SelectValue placeholder="Select company" />
+            </SelectTrigger>
+            <SelectContent className="bg-black/90 backdrop-blur-xl border-white/20">
+              {companies.map((company) => (
+                <SelectItem 
+                  key={company.id} 
+                  value={company.id.toString()}
+                  className="text-white hover:bg-white/10 focus:bg-white/10 focus:text-white"
+                >
+                  {company.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
         
         <nav className="flex-1 px-3 py-4 space-y-1">
