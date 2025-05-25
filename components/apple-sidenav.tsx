@@ -21,7 +21,7 @@ const navItems = [
   { href: '/dashboard/properties', label: 'Properties', icon: Building },
   { href: '/dashboard/analytics', label: 'Analytics', icon: BarChart3 },
   { href: '/dashboard/account', label: 'Account', icon: UserCircle },
-  { href: '/dashboard/settings', label: 'WonderCapital', icon: Settings },
+  { href: '/dashboard/settings', label: 'WonderFlex Capital', icon: Settings },
 ];
 
 export function AppleSidenav() {
