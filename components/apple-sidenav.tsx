@@ -53,7 +53,7 @@ export function AppleSidenav() {
         <div className="p-6 border-b border-white/10">
           <Link href="/dashboard" className="flex items-center space-x-2">
             <span className="text-[1.4rem] text-white whitespace-nowrap" style={{ fontFamily: "'AS Chateau', serif", textShadow: '0 1px 2px rgba(0,0,0,0.1)' }}>
-              Chateau Marmont
+              Wonderland Studio
             </span>
           </Link>
         </div>
