@@ -10,8 +10,8 @@ import {
   LineChart, 
   UserCog, 
   DollarSign, 
-  ScrollText, 
-  Grid3X3
+  ScrollText,
+  ChevronDown,
 } from 'lucide-react';
 import { WidgetPanel } from './WidgetPanel';
 import {
@@ -21,6 +21,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+
+interface Company {
+  id: string;
+  name: string;
+}
+
+const companies: Company[] = [
+  { id: "1", name: "Wonderland Studio" },
+  { id: "2", name: "WonderFlex Capital" },
+  { id: "3", name: "Wonder Technologies" },
+];
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutGrid },
@@ -32,16 +43,10 @@ const navItems = [
   { href: '/dashboard/accounting', label: 'Accounting', icon: ScrollText },
 ];
 
-const companies = [
-  { id: 1, name: "Wonderland Studio" },
-  { href: '/dashboard/settings', label: 'WonderFlex Capital', icon: DollarSign },
-  { href: '/dashboard/accounting', label: 'Accounting', icon: ScrollText },
-];
-
 export function AppleSidenav() {
   const pathname = usePathname();
   const [showWidgetPanel, setShowWidgetPanel] = useState(false);
-  const [selectedCompany, setSelectedCompany] = useState("1");
+  const [selectedCompany, setSelectedCompany] = useState<string>(companies[0].id);
 
   return (
     <div className="absolute inset-0 flex items-center justify-center">
@@ -67,25 +72,20 @@ export function AppleSidenav() {
         
         {/* Content */}
         <div className="p-6 border-b border-white/10">
-          <Select value={selectedCompany} onValueChange={setSelectedCompany}>
-            <SelectTrigger 
-              className="w-[240px] bg-transparent border-0 text-[1.4rem] text-white hover:bg-white/5 transition-colors"
+          <div className="relative inline-block text-left">
+            <button
+              className="text-[1.4rem] text-white whitespace-nowrap flex items-center gap-2 hover:opacity-80 transition-opacity"
               style={{ fontFamily: "'AS Chateau', serif", textShadow: '0 1px 2px rgba(0,0,0,0.1)' }}
+              onClick={() => {
+                const currentIndex = companies.findIndex(c => c.id === selectedCompany);
+                const nextIndex = (currentIndex + 1) % companies.length;
+                setSelectedCompany(companies[nextIndex].id);
+              }}
             >
-              <SelectValue placeholder="Select company" />
-            </SelectTrigger>
-            <SelectContent className="bg-black/90 backdrop-blur-xl border-white/20">
-              {companies.map((company) => (
-                <SelectItem 
-                  key={company.id} 
-                  value={company.id.toString()}
-                  className="text-white hover:bg-white/10 focus:bg-white/10 focus:text-white"
-                >
-                  {company.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+              {companies.find(c => c.id === selectedCompany)?.name}
+              <ChevronDown className="w-5 h-5 opacity-75" />
+            </button>
+          </div>
         </div>
         
         <nav className="flex-1 px-3 py-4 space-y-1">
