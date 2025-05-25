@@ -4,23 +4,25 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { 
-  LayoutDashboard, 
-  CalendarClock,
-  Building, 
-  BarChart3, 
-  UserCircle, 
-  Settings,
+  LayoutGrid, 
+  CircleDollarSign, 
+  CreditCard, 
+  LineChart, 
+  UserCog, 
+  DollarSign, 
+  ScrollText, 
   Grid3X3
 } from 'lucide-react';
 import { WidgetPanel } from './WidgetPanel';
 
 const navItems = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/dashboard/reservations', label: 'My Reservations', icon: CalendarClock },
-  { href: '/dashboard/properties', label: 'Properties', icon: Building },
-  { href: '/dashboard/analytics', label: 'Analytics', icon: BarChart3 },
-  { href: '/dashboard/account', label: 'Account', icon: UserCircle },
-  { href: '/dashboard/settings', label: 'Settings', icon: Settings },
+  { href: '/dashboard', label: 'Dashboard', icon: LayoutGrid },
+  { href: '/dashboard/reservations', label: 'Transactions', icon: CircleDollarSign },
+  { href: '/dashboard/bill-pay', label: 'Bill Pay', icon: CreditCard },
+  { href: '/dashboard/analytics', label: 'Analytics', icon: LineChart },
+  { href: '/dashboard/account', label: 'Account', icon: UserCog },
+  { href: '/dashboard/settings', label: 'WonderFlex Capital', icon: DollarSign },
+  { href: '/dashboard/accounting', label: 'Accounting', icon: ScrollText },
 ];
 
 export function AppleSidenav() {
@@ -53,7 +55,7 @@ export function AppleSidenav() {
         <div className="p-6 border-b border-white/10">
           <Link href="/dashboard" className="flex items-center space-x-2">
             <span className="text-[1.4rem] text-white whitespace-nowrap" style={{ fontFamily: "'AS Chateau', serif", textShadow: '0 1px 2px rgba(0,0,0,0.1)' }}>
-              Chateau Marmont
+              Wonderland Studio
             </span>
           </Link>
         </div>
