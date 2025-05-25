@@ -16,7 +16,7 @@ import { WidgetPanel } from './WidgetPanel';
 
 const navItems = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/dashboard/reservations', label: 'My Reservations', icon: CalendarClock },
+  { href: '/dashboard/reservations', label: 'Transactions', icon: CalendarClock },
   { href: '/dashboard/properties', label: 'Properties', icon: Building },
   { href: '/dashboard/analytics', label: 'Analytics', icon: BarChart3 },
   { href: '/dashboard/account', label: 'Account', icon: UserCircle },
