@@ -12,6 +12,7 @@ import {
   DollarSign,
   ScrollText,
   ChevronDown,
+  LayoutDashboard,
 } from 'lucide-react';
 import { WidgetPanel } from './WidgetPanel';
 import {
@@ -34,7 +35,7 @@ const companies: Company[] = [
 ];
 
 const navItems = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutGrid },
+  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/dashboard/reservations', label: 'Transactions', icon: CircleDollarSign },
   { href: '/dashboard/bill-pay', label: 'Bill Pay', icon: CreditCard },
   { href: '/dashboard/analytics', label: 'Analytics', icon: LineChart },
