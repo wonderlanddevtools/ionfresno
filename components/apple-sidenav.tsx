@@ -9,7 +9,7 @@ import {
   CreditCard, 
   LineChart, 
   UserCog, 
-  Building, 
+  DollarSign, 
   ScrollText, 
   Grid3X3
 } from 'lucide-react';
@@ -21,7 +21,7 @@ const navItems = [
   { href: '/dashboard/bill-pay', label: 'Bill Pay', icon: CreditCard },
   { href: '/dashboard/analytics', label: 'Analytics', icon: LineChart },
   { href: '/dashboard/account', label: 'Account', icon: UserCog },
-  { href: '/dashboard/settings', label: 'WonderFlex Capital', icon: Building },
+  { href: '/dashboard/settings', label: 'WonderFlex Capital', icon: DollarSign },
   { href: '/dashboard/accounting', label: 'Accounting', icon: ScrollText },
 ];
 
