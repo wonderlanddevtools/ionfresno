@@ -4,25 +4,25 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { 
-  LayoutDashboard, 
-  Wallet,
-  Receipt,
-  BarChart3, 
-  UserCircle, 
-  Building2,
-  Calculator,
+  LayoutGrid, 
+  CircleDollarSign, 
+  CreditCard, 
+  LineChart, 
+  UserCog, 
+  Building, 
+  ScrollText, 
   Grid3X3
 } from 'lucide-react';
 import { WidgetPanel } from './WidgetPanel';
 
 const navItems = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/dashboard/reservations', label: 'Transactions', icon: Wallet },
-  { href: '/dashboard/bill-pay', label: 'Bill Pay', icon: Receipt },
-  { href: '/dashboard/analytics', label: 'Analytics', icon: BarChart3 },
-  { href: '/dashboard/account', label: 'Account', icon: UserCircle },
-  { href: '/dashboard/settings', label: 'WonderFlex Capital', icon: Building2 },
-  { href: '/dashboard/accounting', label: 'Accounting', icon: Calculator },
+  { href: '/dashboard', label: 'Dashboard', icon: LayoutGrid },
+  { href: '/dashboard/reservations', label: 'Transactions', icon: CircleDollarSign },
+  { href: '/dashboard/bill-pay', label: 'Bill Pay', icon: CreditCard },
+  { href: '/dashboard/analytics', label: 'Analytics', icon: LineChart },
+  { href: '/dashboard/account', label: 'Account', icon: UserCog },
+  { href: '/dashboard/settings', label: 'WonderFlex Capital', icon: Building },
+  { href: '/dashboard/accounting', label: 'Accounting', icon: ScrollText },
 ];
 
 export function AppleSidenav() {
