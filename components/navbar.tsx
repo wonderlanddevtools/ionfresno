@@ -33,9 +33,9 @@ export function Navbar() {
           <div>
             <Link 
               href="/" 
-              className="text-lg font-medium tracking-tight text-white hover:text-neutral-200 hover-lift" // Added text-white and hover:text-neutral-200
+              className="text-lg font-medium tracking-tight text-white hover:text-neutral-200 hover-lift"
             >
-              WonderReserve
+              WonderPay
             </Link>
           </div>
 
