@@ -18,10 +18,10 @@ function WidgetRenderer({ widget }: { widget: Widget }) {
         return <Clock />;
       case 'ModernClock':
         return (
-          <div className="w-48 h-48 p-2">
+          <div className="glass-morphism w-48 h-48 p-4 rounded-2xl">
             <ModernClock 
               size={160} 
-              background="rgba(23, 23, 28, 0.4)"
+              background="rgba(28, 28, 35, 0.5)"
               handColor="hsl(var(--primary))"
               tickColor="rgba(255, 255, 255, 0.6)"
               showTicks={true} 
