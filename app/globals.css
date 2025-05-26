@@ -13,150 +13,142 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
-    --radius: 1rem;
-  }
-
-  .dark {
-    --background: 240 10% 4%;
+    --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
-    --card: 240 10% 6%;
+    --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 6%;
+    --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
+    --primary: 252 100% 69%;
+    --primary-foreground: 0 0% 98%;
     --secondary: 240 4% 12%;
     --secondary-foreground: 0 0% 98%;
     --muted: 240 4% 12%;
     --muted-foreground: 240 5% 65%;
-    --accent: 240 4% 12%;
+    --accent: 252 100% 69%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 4% 16%;
     --input: 240 4% 16%;
-    --ring: 240 5% 65%;
+    --ring: 252 100% 69%;
+    --radius: 1rem;
   }
 }
 
+/* Modern Glass Morphism */
 .glass-morphism {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(23, 23, 28, 0.5);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 4px 24px -1px rgba(0, 0, 0, 0.2),
+    0 1px 2px 0 rgba(255, 255, 255, 0.05) inset;
+}
+
+/* Premium Card Design */
+.premium-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
   backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    0 1px 2px rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.2),
+    0 1px 2px rgba(255, 255, 255, 0.05);
+}
+
+/* Modern Button Styles */
+.btn-modern {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--primary), 1) 0%,
+    rgba(var(--primary), 0.8) 100%
+  );
+  padding: 0.75rem 1.5rem;
+  border-radius: 1rem;
+  font-weight: 500;
+  color: hsl(var(--primary-foreground));
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.dark .glass-morphism {
-  background: rgba(23, 23, 28, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+.btn-modern:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(var(--primary), 0.4);
 }
 
-.hover-lift {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.hover-lift:hover {
-  transform: translateY(-2px);
-}
-
-/* Modern Card Styles */
-.modern-card {
-  @apply rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.modern-card:hover {
-  @apply border-white/20 shadow-2xl;
-  transform: translateY(-2px);
+.btn-modern:active {
+  transform: translateY(1px);
 }
 
 /* Chart Styles */
 .chart-container {
-  @apply rounded-xl bg-white/5 backdrop-blur-lg border border-white/10 p-4;
+  background: rgba(23, 23, 28, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 1.5rem;
 }
 
 .chart-line {
-  @apply stroke-2 stroke-primary;
+  stroke: hsl(var(--primary));
+  stroke-width: 2;
 }
 
-/* Button Styles */
-.btn-primary {
-  @apply px-6 py-3 rounded-xl bg-primary text-primary-foreground font-medium 
-         transition-all duration-200 hover:bg-primary/90 active:scale-95;
-}
-
-.btn-secondary {
-  @apply px-6 py-3 rounded-xl bg-secondary text-secondary-foreground font-medium
-         transition-all duration-200 hover:bg-secondary/90 active:scale-95;
-}
-
-/* Input Styles */
+/* Modern Input Field */
 .input-modern {
-  @apply w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 
-         text-foreground placeholder-muted-foreground focus:border-white/20 
-         focus:ring-1 focus:ring-white/20 transition-all duration-200;
+  background: rgba(23, 23, 28, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  color: hsl(var(--foreground));
+  transition: all 0.3s ease;
+}
+
+.input-modern:focus {
+  border-color: rgba(var(--primary), 0.5);
+  box-shadow: 0 0 0 2px rgba(var(--primary), 0.2);
 }
 
 /* Navigation Styles */
-.nav-link {
-  @apply flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200
-         text-muted-foreground hover:text-foreground hover:bg-white/5;
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  color: hsl(var(--muted-foreground));
+  transition: all 0.3s ease;
 }
 
-.nav-link.active {
-  @apply bg-white/10 text-foreground;
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: hsl(var(--foreground));
 }
 
-/* Card Grid Layout */
-.card-grid {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
-}
-
-/* Stats Card */
-.stats-card {
-  @apply flex flex-col p-6 rounded-2xl bg-white/5 backdrop-blur-xl 
-         border border-white/10 transition-all duration-200;
-}
-
-.stats-card:hover {
-  @apply border-white/20 transform -translate-y-1;
-}
-
-/* Typography */
-.heading-1 {
-  @apply text-4xl font-bold tracking-tight;
-}
-
-.heading-2 {
-  @apply text-3xl font-semibold tracking-tight;
-}
-
-.text-balance {
-  text-wrap: balance;
+.nav-item.active {
+  background: rgba(var(--primary), 0.1);
+  color: hsl(var(--primary));
 }
 
 /* Animation Utilities */
 .animate-fade-up {
-  animation: fadeUp 0.5s ease-out forwards;
+  animation: fadeUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 @keyframes fadeUp {
@@ -168,4 +160,23 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Typography */
+.heading-large {
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.heading-medium {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.text-balance {
+  text-wrap: balance;
 }

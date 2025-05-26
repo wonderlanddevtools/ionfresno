@@ -21,9 +21,9 @@ function WidgetRenderer({ widget }: { widget: Widget }) {
           <div className="w-48 h-48 p-2">
             <ModernClock 
               size={160} 
-              background="rgba(255, 255, 255, 0.05)" 
-              handColor="#ffffff" 
-              tickColor="#cccccc" 
+              background="rgba(23, 23, 28, 0.4)"
+              handColor="hsl(var(--primary))"
+              tickColor="rgba(255, 255, 255, 0.6)"
               showTicks={true} 
             />
           </div>
