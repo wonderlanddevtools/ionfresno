@@ -5,13 +5,9 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: { unoptimized: true },
-  webpack: (config, { isServer }) => {
-    // Disable webpack caching for client-side builds
-    if (!isServer) {
-      config.cache = {
-        type: 'memory'
-      };
-    }
+  webpack: (config) => {
+    // Disable file system caching completely
+    config.cache = false;
     return config;
   },
   experimental: {
