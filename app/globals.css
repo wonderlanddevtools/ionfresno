@@ -36,81 +36,38 @@
   }
 
   .dark {
-    --background: 240 10% 3.9%; /* Outermost background (e.g. body) - very dark */
-    --foreground: 0 0% 98%;     /* Default text color - light */
-    
-    /* Solid card backgrounds (less emphasis if glassmorphism is primary) */
-    --card: 240 6% 12%;            /* Card background - e.g., hsl(240, 6%, 12%) rgb(29, 29, 32) */
-    --card-foreground: 0 0% 98%; /* Text on cards */
-    
-    /* Page layout background (e.g., main content area holding cards) */
-    --muted: 240 8% 8%;             /* Muted background - e.g., hsl(240, 8%, 8%) rgb(19, 19, 22) - this will be behind glass */
-    --muted-foreground: 240 5% 64.9%; /* Text on muted backgrounds */
-
-    /* Borders for solid elements */
-    --border: 240 5% 17%;           /* Border color - e.g., hsl(240, 5%, 17%) rgb(40, 40, 44) */
-
-    /* Popovers, dialogs, etc. (can be solid or glass depending on design) */
-    --popover: 240 6% 10%;           /* Popover background */
+    --background: 240 10% 4%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 6%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 6%;
     --popover-foreground: 0 0% 98%;
-
-    /* Primary interactive elements */
-    --primary: 0 0% 90%;             /* Primary button/accent color - light gray/white-ish */
-    --primary-foreground: 240 10% 3.9%; /* Text on primary elements - dark */
-
-    /* Secondary interactive elements */
-    --secondary: 240 5% 22%;          /* Secondary button background - darker gray */
-    --secondary-foreground: 0 0% 98%;  /* Text on secondary elements */
-
-    /* Accent colors for highlights, focus states, etc. */
-    --accent: 240 5% 22%;            /* Accent background (can be same as secondary or different) */
-    --accent-foreground: 0 0% 98%;   /* Text on accent backgrounds */
-
-    /* Destructive actions */
-    --destructive: 0 70% 50%;          /* Destructive action color (e.g., a brighter red) */
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 4% 12%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 4% 12%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 240 4% 12%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-
-    /* Input fields */
-    --input: 240 5% 17%;             /* Input field background (same as border or slightly different) */
-    --ring: 240 4.9% 83.9%;          /* Focus ring color */
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground antialiased;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 240 5% 65%;
   }
 }
 
 .glass-morphism {
-  background: rgba(255, 255, 255, 0.7); /* Light mode glass */
-  backdrop-filter: blur(12px); /* Slightly more blur */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Softer border for light mode */
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for light mode glass */
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .dark .glass-morphism {
-  background: rgba(250, 250, 252, 0.35); 
-  backdrop-filter: blur(24px);         
-  position: relative; 
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12); 
-  border-radius: 18px; 
-}
-
-.dark .glass-morphism::before {
-  content: ''; 
-  position: absolute; 
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: inherit; 
-  border: 1px solid rgba(255, 255, 255, 0.2); 
-  pointer-events: none; 
+  background: rgba(23, 23, 28, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .hover-lift {
@@ -121,20 +78,94 @@
   transform: translateY(-2px);
 }
 
-/*
-.glass-card {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+/* Modern Card Styles */
+.modern-card {
+  @apply rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.dark .glass-card {
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.modern-card:hover {
+  @apply border-white/20 shadow-2xl;
+  transform: translateY(-2px);
 }
-*/
 
-.force-lime-border {
-  border: 10px solid limegreen !important;
+/* Chart Styles */
+.chart-container {
+  @apply rounded-xl bg-white/5 backdrop-blur-lg border border-white/10 p-4;
+}
+
+.chart-line {
+  @apply stroke-2 stroke-primary;
+}
+
+/* Button Styles */
+.btn-primary {
+  @apply px-6 py-3 rounded-xl bg-primary text-primary-foreground font-medium 
+         transition-all duration-200 hover:bg-primary/90 active:scale-95;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 rounded-xl bg-secondary text-secondary-foreground font-medium
+         transition-all duration-200 hover:bg-secondary/90 active:scale-95;
+}
+
+/* Input Styles */
+.input-modern {
+  @apply w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 
+         text-foreground placeholder-muted-foreground focus:border-white/20 
+         focus:ring-1 focus:ring-white/20 transition-all duration-200;
+}
+
+/* Navigation Styles */
+.nav-link {
+  @apply flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200
+         text-muted-foreground hover:text-foreground hover:bg-white/5;
+}
+
+.nav-link.active {
+  @apply bg-white/10 text-foreground;
+}
+
+/* Card Grid Layout */
+.card-grid {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+/* Stats Card */
+.stats-card {
+  @apply flex flex-col p-6 rounded-2xl bg-white/5 backdrop-blur-xl 
+         border border-white/10 transition-all duration-200;
+}
+
+.stats-card:hover {
+  @apply border-white/20 transform -translate-y-1;
+}
+
+/* Typography */
+.heading-1 {
+  @apply text-4xl font-bold tracking-tight;
+}
+
+.heading-2 {
+  @apply text-3xl font-semibold tracking-tight;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Animation Utilities */
+.animate-fade-up {
+  animation: fadeUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

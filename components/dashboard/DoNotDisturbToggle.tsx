@@ -7,23 +7,25 @@ import { cn } from '@/lib/utils';
 export function DoNotDisturbToggle() {
   const [isDndActive, setIsDndActive] = useState(false);
 
-  const toggleDnd = () => {
-    setIsDndActive(!isDndActive);
-  };
-
   return (
     <button
-      onClick={toggleDnd}
+      onClick={() => setIsDndActive(!isDndActive)}
       className={cn(
-        'flex items-center space-x-3 px-5 py-3 rounded-full transition-all duration-200 ease-in-out',
-        'bg-neutral-800 hover:bg-neutral-700 text-white',
-        'focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:ring-opacity-50',
-        'shadow-lg transform hover:scale-105 active:scale-95'
+        'flex items-center space-x-3 px-6 py-4 rounded-2xl transition-all duration-300',
+        'bg-white/5 backdrop-blur-xl border border-white/10',
+        'hover:bg-white/10 hover:border-white/20 active:scale-95',
+        'focus:outline-none focus:ring-2 focus:ring-white/20',
+        'shadow-lg'
       )}
       aria-pressed={isDndActive}
     >
-      <Moon className={cn('h-5 w-5 transition-colors', isDndActive ? 'text-blue-400 fill-blue-400/30' : 'text-neutral-400')} />
-      <span className="text-sm font-medium">
+      <Moon 
+        className={cn(
+          'h-5 w-5 transition-all duration-300',
+          isDndActive ? 'text-blue-400 fill-blue-400/30' : 'text-white/60'
+        )} 
+      />
+      <span className="text-sm font-medium text-white">
         Do not disturb
       </span>
     </button>
